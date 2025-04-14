@@ -8,7 +8,7 @@ pipeline {
         ECR_REGISTRY = '025066267125.dkr.ecr.us-east-1.amazonaws.com'
         ECR_REPO = "${ECR_REGISTRY}/${IMAGE_NAME}"
     }
-    s
+    
 
     stages {
 
