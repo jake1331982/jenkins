@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REPO = 'jake1331982/proyect-vla'
+        REPO = 'jake1331982/jenkins'
         IMAGE_NAME = 'jenkins'
         AWS_REGION = 'us-east-1'
         ECR_REGISTRY = '025066267125.dkr.ecr.us-east-1.amazonaws.com'
