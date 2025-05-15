@@ -36,6 +36,7 @@ pipeline {
             steps {
                 script {
                     dir(REPO) {
+                        sh 'npm install'
                         sh 'npm run build'
                     }
                 }
