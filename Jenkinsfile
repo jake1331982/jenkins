@@ -4,7 +4,7 @@ pipeline {
     
 
     environment {
-        REPO = 'jake1331982/jenkins'
+        REPO = 'jenkins'
         IMAGE_NAME = 'jenkins'
         AWS_REGION = 'us-east-1'
         ECR_REGISTRY = '025066267125.dkr.ecr.us-east-1.amazonaws.com'
