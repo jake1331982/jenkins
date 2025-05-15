@@ -23,9 +23,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'GITHUB_CREDENTIALS', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_TOKEN')]) {
-                        sh """
-                            git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/${REPO}.git
-                        """
+                        sh '''
+                          git clone https://${GIT_USER}:${GIT_TOKEN}@github.com/jake1331982/jenkins.git
+                        '''
                     }
                 }
             }
