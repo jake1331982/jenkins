@@ -1,7 +1,5 @@
 pipeline {
     agent any
-       
-    
 
     environment {
         REPO = 'jenkins'
@@ -10,7 +8,6 @@ pipeline {
         ECR_REGISTRY = '025066267125.dkr.ecr.us-east-1.amazonaws.com'
         ECR_REPO = "${ECR_REGISTRY}/${IMAGE_NAME}"
     }
-    
 
     stages {
 
@@ -21,6 +18,7 @@ pipeline {
                 }
             }
         }
+
         stage('Clonar desde GitHub con Token') {
             steps {
                 script {
@@ -32,26 +30,27 @@ pipeline {
                 }
             }
         }
-    stage('Instalar Dependencias') {
+
+        stage('Instalar Dependencias') {
             steps {
                 script {
                     dir(REPO) {
                         sh 'npm install'
-                        
                     }
                 }
             }
         }
-        
+
         stage('Construir Imagen Docker') {
             steps {
-                dir('jenkins') {
+                dir(REPO) {
                     script {
                         dockerImage = docker.build("${IMAGE_NAME}:latest")
                     }
                 }
             }
         }
+
         stage('Login en ECR') {
             steps {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws_credentials']]) {
@@ -67,11 +66,12 @@ pipeline {
         stage('Push a ECR') {
             steps {
                 script {
-                    dockerImage.tag("${ECR_REPO}", "latest")
+                    // Use docker tag in shell to tag the image
+                    sh "docker tag ${IMAGE_NAME}:latest ${ECR_REPO}:latest"
+                    // Push the image to ECR
                     sh "docker push ${ECR_REPO}:latest"
                 }
             }
         }
-    }    
-    
+    }
 }
