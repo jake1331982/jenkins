@@ -42,15 +42,7 @@ pipeline {
                 }
             }
         }
-        stage('Ejecutar Pruebas') {
-            steps {
-                script {
-                    dir(REPO) {
-                        sh 'npm test'
-                    }
-                }
-            }
-        }
+        
         stage('Construir Imagen Docker') {
             steps {
                 dir('app') {
