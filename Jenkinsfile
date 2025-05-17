@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18' // o la versión que necesites
-        }
-    }
+    agent any
        
     
 
