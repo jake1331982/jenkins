@@ -47,7 +47,7 @@ pipeline {
             steps {
                 dir('jenkins') {
                     script {
-                        dockerImage = docker.build("${IMAGE_NAME}")
+                        dockerImage = docker.build("${IMAGE_NAME}:latest")
                     }
                 }
             }
